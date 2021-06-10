@@ -1,10 +1,14 @@
 import React, { useState } from "react"
 import { Connection, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
-import { Form, Input, Button, Alert } from 'antd';
-import { getNodeURL } from '../lib/utils';
+import { Form, Input, Button, Alert, Space, Typography } from 'antd';
+import { getNodeURL, getTxExplorerURL } from '../lib/utils';
+
+const { Text } = Typography;
 
 const Transfer = ({ keypair }) => {
   const [error, setError] = useState(null);
+  const [fetching, setFetching] = useState(false);
+  const [txSignature, setTxSignature] = useState(null);
 
   const onFinish = (values) => {
     const url = getNodeURL();
@@ -15,36 +19,32 @@ const Transfer = ({ keypair }) => {
 
     const signers = [
       {
-        publicKey: new PublicKey(values.from),
+        publicKey: fromPubKey,
         secretKey: new Uint8Array(keypair.secretKey)
       }
     ];
 
+    const transaction = new Transaction();
     const instructions = SystemProgram.transfer({
       fromPubkey: fromPubKey,
       toPubkey: toPubKey,
       lamports: 100000,  // 10^9 = 1 SOL
     });
-
-    const transaction = new Transaction();
-    
     transaction.add(instructions);
 
-    sendAndConfirmTransaction(
-        connection,
+    connection
+      .sendTransaction(
         transaction,
-        signers,
-        {
-          confirmations: 1,
-        }
-      )
-      .then((signature) => {
+        signers
+      ).then((signature) => {
         console.log("Success ->", signature);
+        setTxSignature(signature);
+        setFetching(false);
       })
-      .catch((err) => {
-        setError(err.message)
-      })
+      .catch(e => setError(e.message))
   };
+
+  const explorerUrl = getTxExplorerURL(txSignature);
 
   return (
     <Form
@@ -69,11 +69,26 @@ const Transfer = ({ keypair }) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" disabled={fetching}>
           Submit
         </Button>
       </Form.Item>
 
+      {fetching && "Sending transaction..."}
+
+      {txSignature &&
+        <Alert
+          type="success"
+          showIcon
+          message={
+            <Space>
+              <Text strong>Transfer succeeded!</Text>
+              <a href={explorerUrl} target="_blank" rel="noreferrer" style={{ fontSize: "12px" }}>(view on Solana Explorer)</a>
+            </Space>
+          }
+        />
+      }
+      
       {error &&
         <Alert
           type="error"

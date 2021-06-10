@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Col, Input, Button, Space, Typography } from 'antd';
-import { getExplorerAddressURL, getNodeURL } from "../lib/utils";
+import { getAccountExplorerURL, getNodeURL } from "../lib/utils";
 import { Connection, PublicKey } from "@solana/web3.js";
 
 const { Text } = Typography;
@@ -27,7 +27,7 @@ const Balance = () => {
       })
   }
 
-  const explorerUrl = getExplorerAddressURL(value);
+  const explorerUrl = getAccountExplorerURL(value);
 
   return (
     <Col>
