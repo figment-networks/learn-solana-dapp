@@ -11,6 +11,12 @@ const Transfer = ({ keypair }) => {
   const [txSignature, setTxSignature] = useState(null);
 
   const onFinish = (values) => {
+    const amountNumber = parseFloat(values.amount);
+
+    if (isNaN(amountNumber)) {
+      setError("Amount needs to be a valid number")
+    }
+
     const url = getNodeURL();
     const connection = new Connection(url);
 
@@ -28,7 +34,7 @@ const Transfer = ({ keypair }) => {
     const instructions = SystemProgram.transfer({
       fromPubkey: fromPubKey,
       toPubkey: toPubKey,
-      lamports: 100000,  // 10^9 = 1 SOL
+      lamports: amountNumber,
     });
     transaction.add(instructions);
 
@@ -61,7 +67,10 @@ const Transfer = ({ keypair }) => {
       </Form.Item>
 
       <Form.Item label="Amount" name="amount" required tooltip="Enter an amount of SOL tokens">
-        <Input prefix="◎" suffix="SOL" style={{ width: "150px" }} />
+        <Space direction="vertical">
+          <Input suffix="lamports" style={{ width: "200px" }} />
+          <Text type="secondary">(1 lamport = 0.000000001 SOL)</Text>
+        </Space>
       </Form.Item>
 
       <Form.Item label="Recipient" name="to" required>
