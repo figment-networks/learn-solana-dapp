@@ -6,7 +6,7 @@ import { STEPS } from "../lib/steps-config";
 import Balance from "./Balance";
 import Account from "./Account";
 import Fund from "./Fund";
-import Send from "./Send";
+import Transfer from "./Transfer";
 import Connect from "./Connect";
 
 const Step = ({ stepIndex, prev, next }) => {
@@ -27,7 +27,7 @@ const Step = ({ stepIndex, prev, next }) => {
           {step.id === "account" && <Account keypair={keypair} setKeypair={setKeypair} />}
           {step.id === "fund" && <Fund />}
           {step.id === "balance" && <Balance />}
-          {step.id === "send" && <Send />}
+          {step.id === "transfer" && <Transfer keypair={keypair} />}
         </StepContent>
 
         <StepFooter>
@@ -74,7 +74,7 @@ const Description = styled.div`
 `;
 
 const StepContent = styled.div`
-  height: 250px;
+  min-height: 250px;
 `;
 
 const NextButton = styled(Button)`

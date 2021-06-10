@@ -2,26 +2,26 @@ export const STEPS = [
   {
     id: "connect",
     title: "Connect to the Solana chain",
-    description: "Learn how to create a keypair with Solana",
+    description: "Connect to Solana using its JS library",
   },
   {
     id: "account",
     title: "Create an account",
-    description: "Learn how to create a keypair with Solana",
+    description: "Create a Keypair (public + secret keys)",
   },
   {
     id: "fund",
     title: "Fund the account",
-    description: "Learn how to create a keypair with Solana",
+    description: "Request an airdrop of tokens on your address",
   },
   {
     id: "balance",
     title: "Check your balanace",
-    description: "Learn how to create a keypair with Solana",
+    description: "Check the token balance of any Solana address",
   },
   {
-    id: "send",
-    title: "Send funds",
-    description: "Learn how to create a keypair with Solana",
+    id: "transfer",
+    title: "Transfer tokens",
+    description: "Transfer tokens by sending a signed transaction",
   },
 ];
