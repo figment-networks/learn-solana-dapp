@@ -20,7 +20,7 @@ const Step = ({ stepIndex, prev, next }) => {
         <StepHeader>
           <Title>{step.title}</Title>
           <Description>{step.description}</Description>
-          <Description><a href={step.metadata} target="_blank" rel="noreferrer">{step.metadata}</a></Description>
+          <Reference><a href={step.metadata} target="_blank" rel="noreferrer">{step.metadata}</a></Reference>
         </StepHeader>
 
         <StepContent>
@@ -72,6 +72,11 @@ const Title = styled.div`
 const Description = styled.div`
   font-size: 18px;
   color: #aaa;
+`;
+
+const Reference = styled.div`
+  font-size: 14px;
+  font-weight: 400;
 `;
 
 const StepContent = styled.div`
