@@ -6,7 +6,6 @@ import './App.css';
 
 function App() {
   const [stepIndex, setStepIndex] = useState(0);
-  
   const next = () => setStepIndex(stepIndex + 1);
   const prev = () => setStepIndex(stepIndex - 1);
 

@@ -4,6 +4,10 @@ export const getNodeURL = () => {
     : process.env.REACT_APP_DEVNET_URL;
 }
 
-export const getExplorerAddressURL = (address) => {
+export const getAccountExplorerURL = (address) => {
   return `https://explorer.solana.com/address/${address}?cluster=devnet`;
+}
+
+export const getTxExplorerURL = (signature) => {
+  return `https://explorer.solana.com/tx/${signature}?cluster=devnet`;
 }
