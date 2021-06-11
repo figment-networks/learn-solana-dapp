@@ -20,6 +20,7 @@ const Step = ({ stepIndex, prev, next }) => {
         <StepHeader>
           <Title>{step.title}</Title>
           <Description>{step.description}</Description>
+          <Description><a href={step.metadata}>{step.metadata}</a></Description>
         </StepHeader>
 
         <StepContent>
