@@ -20,13 +20,12 @@ const Step = ({ stepIndex, prev, next }) => {
         <StepHeader>
           <Title>{step.title}</Title>
           <Description>{step.description}</Description>
-          <Reference>
-            <a href={step.metadata} target="_blank" rel="noreferrer">
-              View the Pathway Documentation
+          <Link>
+            <a href={step.url} target="_blank" rel="noreferrer">
+              View step Instructions
             </a>
-          </Reference>
+          </Link>
         </StepHeader>
-
         <StepContent>
           {step.id === "connect" && <Connect />}
           {step.id === "account" && <Account keypair={keypair} setKeypair={setKeypair} />}
@@ -78,7 +77,7 @@ const Description = styled.div`
   color: #aaa;
 `;
 
-const Reference = styled.div`
+const Link = styled.div`
   font-size: 14px;
   font-weight: 400;
 `;
