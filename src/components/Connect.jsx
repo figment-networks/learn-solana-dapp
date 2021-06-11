@@ -14,14 +14,10 @@ const Connect = () => {
 
   const getConnection = () => {
     const url = getNodeURL();
-    const connection = new Connection(url);
     
-    connection.getVersion()
-      .then(version => {
-        console.log("version", version)
-        setVersion(version);
-      })
-      .catch(error => console.log(error))
+    // Create a connection
+    // Get the API version
+    // and save it to the component's state
   }
 
   return (

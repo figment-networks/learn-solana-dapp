@@ -14,17 +14,10 @@ const Balance = () => {
   const getBalance = () => {
     const url = getNodeURL();
     const connection = new Connection(url);
-    const publicKey = new PublicKey(value);
-
-    connection.getBalance(publicKey)
-      .then((balance) => {
-        console.log(balance);
-        setBalance(balance / DECIMAL_OFFSET, null);
-      })
-      .catch((error) => {
-        console.log(error);
-        setBalance("", error);
-      })
+    
+    // Create a PublicKey from the input value
+    // Call getBalance
+    // Set balance using setBalance and DECIMAL_OFFSET
   }
 
   const explorerUrl = getAccountExplorerURL(value);

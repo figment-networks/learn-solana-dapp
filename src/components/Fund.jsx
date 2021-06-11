@@ -9,20 +9,10 @@ const Fund = () => {
   const fund = () => {
     const url = process.env.REACT_APP_DEVNET_URL;
     const connection = new Connection(url);
-    const address = new PublicKey(value);
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // JSON RPC method for doing this:
-    // https://docs.solana.com/developing/clients/jsonrpc-api#requestairdrop
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    connection.requestAirdrop(address, 1000000000)
-      .then((res) => {
-        console.log(res)
-        setIsFunded(true);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    
+    // Create a PublicKey address from the input value
+    // Call requestAirdrop
+    // On success, set isFunded to true
   }
   
   return (

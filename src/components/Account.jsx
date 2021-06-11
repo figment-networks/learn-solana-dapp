@@ -6,11 +6,11 @@ const { Text, Paragraph } = Typography;
 
 const Account = ({ keypair, setKeypair }) => {
   const generateKeypair = () => {
-    const keypair = Keypair.generate();
-    console.log(keypair);
-    console.log(keypair.publicKey.toString());
-    setKeypair(keypair);
+    // Generate a Keypair
+    // Save it to <App />'s state
   }
+
+  const publicKeyStr = "TBD"
 
   return (
     <Col>
@@ -24,9 +24,9 @@ const Account = ({ keypair, setKeypair }) => {
               showIcon
             />
             <Text strong>Public Key:</Text>
-            <Paragraph copyable={{ text: keypair.publicKey.toString() }}>
+            <Paragraph copyable={{ text: publicKeyStr }}>
               <Text code>
-                {keypair.publicKey.toString()}
+                {publicKeyStr}
               </Text>
             </Paragraph>
           </Space>

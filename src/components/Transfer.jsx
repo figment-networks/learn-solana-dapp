@@ -1,53 +1,54 @@
 import React, { useState } from "react"
-import { Connection, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
+import { Connection, PublicKey, SystemProgram, Transaction, Keypair } from "@solana/web3.js";
 import { Form, Input, Button, Alert, Space, Typography } from 'antd';
 import { getNodeURL, getTxExplorerURL } from '../lib/utils';
 
 const { Text } = Typography;
 
 const Transfer = ({ keypair }) => {
+  const [toAddress, setToAddress] = useState(null);
   const [error, setError] = useState(null);
   const [fetching, setFetching] = useState(false);
   const [txSignature, setTxSignature] = useState(null);
 
-  const onFinish = (values) => {
-    const amountNumber = parseFloat(values.amount);
+  const generate = () => {
+    const keypair = Keypair.generate();
+    const address = keypair.publicKey.toString();
+    setToAddress(address);
 
+    console.log(`address`, address);
+  }
+
+  const transfer = (values) => {
+    const amountNumber = parseFloat(values.amount);
+  
     if (isNaN(amountNumber)) {
       setError("Amount needs to be a valid number")
     }
-
+  
     const url = getNodeURL();
     const connection = new Connection(url);
-
+  
     const fromPubKey = new PublicKey(values.from);
-    const toPubKey = new PublicKey(values.to);
-
+    const toPubKey = new PublicKey(toAddress);
+  
     const signers = [
       {
         publicKey: fromPubKey,
         secretKey: new Uint8Array(keypair.secretKey)
       }
     ];
-
-    const transaction = new Transaction();
+  
     const instructions = SystemProgram.transfer({
       fromPubkey: fromPubKey,
       toPubkey: toPubKey,
       lamports: amountNumber,
     });
-    transaction.add(instructions);
-
-    connection
-      .sendTransaction(
-        transaction,
-        signers
-      ).then((signature) => {
-        console.log("Success ->", signature);
-        setTxSignature(signature);
-        setFetching(false);
-      })
-      .catch(e => setError(e.message))
+    
+    // Create a transaction
+    // Add instructions
+    // Call sendTransaction
+    // On success, call setTxSignature and setFetching
   };
 
   const explorerUrl = getTxExplorerURL(txSignature);
@@ -56,7 +57,7 @@ const Transfer = ({ keypair }) => {
     <Form
       name="transfer"
       layout="vertical"
-      onFinish={onFinish}
+      onFinish={transfer}
       initialValues={{
         from: keypair.publicKey.toString()
       }}
@@ -73,8 +74,11 @@ const Transfer = ({ keypair }) => {
         </Space>
       </Form.Item>
 
-      <Form.Item label="Recipient" name="to" required>
-        <Input placeholder="Enter a valid Solana address" />
+      <Form.Item>
+        <Space direction="horizontal">
+          {toAddress && <Text code>{toAddress}</Text>}
+          <Button onClick={generate}>Generate an address</Button>
+        </Space>
       </Form.Item>
 
       <Form.Item>
