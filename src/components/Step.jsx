@@ -20,7 +20,11 @@ const Step = ({ stepIndex, prev, next }) => {
         <StepHeader>
           <Title>{step.title}</Title>
           <Description>{step.description}</Description>
-          <Reference><a href={step.metadata} target="_blank" rel="noreferrer">View the Pathway Documentation</a></Reference>
+          <Reference>
+            <a href={step.metadata} target="_blank" rel="noreferrer">
+              View the Pathway Documentation
+            </a>
+          </Reference>
         </StepHeader>
 
         <StepContent>
