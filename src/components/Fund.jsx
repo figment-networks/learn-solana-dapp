@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Alert, Button, Space, Col, Input } from 'antd';
+import { Alert, Button, Space, Col, Input, Typography } from 'antd';
 import { Connection, PublicKey } from "@solana/web3.js";
+
+const { Text } = Typography;
 
 const Fund = () => {
   const [isFunded, setIsFunded] = useState(false);
@@ -19,6 +21,7 @@ const Fund = () => {
     <Col>
       <Space direction="vertical" size="large">
         <Space direction="vertical">
+          <Text strong>Paste the address you generated previously:</Text>
           <Input placeholder="Enter an address" onChange={(e) => setValue(e.target.value) } style={{ width: "500px" }} />
           <Button type="primary" onClick={fund}>Fund this address</Button>
         </Space>

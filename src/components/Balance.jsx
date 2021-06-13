@@ -26,6 +26,7 @@ const Balance = () => {
     <Col>
       <Space direction="vertical" size="large">
         <Space direction="vertical">
+          <Text strong>Paste the address you generated previously:</Text>
           <Input placeholder="Enter an address" onChange={(e) => setValue(e.target.value) } style={{ width: "500px" }} />
           <Button type="primary" onClick={getBalance}>Check Balance</Button>
         </Space>

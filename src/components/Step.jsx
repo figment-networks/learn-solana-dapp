@@ -19,7 +19,6 @@ const Step = ({ stepIndex, prev, next }) => {
       <Col>
         <StepHeader>
           <Title>{step.title}</Title>
-          <Description>{step.description}</Description>
           <Link>
             <a href={step.url} target="_blank" rel="noreferrer">
               View step Instructions
