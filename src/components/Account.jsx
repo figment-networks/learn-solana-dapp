@@ -10,7 +10,8 @@ const Account = ({ keypair, setKeypair }) => {
     // Save it to <App />'s state
   }
 
-  const publicKeyStr = "TBD"
+  // parse the address (as a string) from the keypair object
+  const publicKeyStr = "TBD";
 
   return (
     <Col>
