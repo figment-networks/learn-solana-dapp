@@ -40,7 +40,7 @@ const Transfer = ({ keypair }) => {
     const fromPubKey = new PublicKey(values.from);
     const toPubKey = new PublicKey(toAddress);
 
-    const instruction = SystemProgram.transfer({
+    const instructions = SystemProgram.transfer({
       fromPubkey: fromPubKey,
       toPubkey: toPubKey,
       lamports: amountNumber,
