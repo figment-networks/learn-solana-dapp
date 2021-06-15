@@ -46,8 +46,6 @@ const Transfer = ({ keypair }) => {
       lamports: 10000,  // 10^9 = 1 SOL
     });
 
-    const transaction = new Transaction().add(instruction);
-
     const signers = [
       {
         publicKey: fromPubKey,
@@ -58,18 +56,10 @@ const Transfer = ({ keypair }) => {
     setTxSignature(null);
     setFetching(true);
 
-    sendAndConfirmTransaction(
-      connection,
-      transaction,
-      signers,
-    ).then((signature) => {
-      setTxSignature(signature)
-      setFetching(false);
-    })
-    .catch((err) => {
-      console.log(err);
-      setFetching(false);
-    })
+    // Create a transaction
+    // Add instructions
+    // Call sendAndConfirmTransaction
+    // On success, call setTxSignature and setFetching
   };
 
   const explorerUrl = getTxExplorerURL(txSignature);
@@ -112,7 +102,7 @@ const Transfer = ({ keypair }) => {
           <Form.Item {...tailLayout}>
             <Space size="large">
               <LoadingOutlined style={{ fontSize: 24, color: "#1890ff" }} spin />
-              <Text italic type="secondary">Transfer initiated. Waiting for confirmations...</Text>
+              <Text type="secondary">Transfer initiated. Waiting for confirmations...</Text>
             </Space>
           </Form.Item>
       }
