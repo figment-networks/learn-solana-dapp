@@ -43,7 +43,7 @@ const Transfer = ({ keypair }) => {
     const instruction = SystemProgram.transfer({
       fromPubkey: fromPubKey,
       toPubkey: toPubKey,
-      lamports: 10000,  // 10^9 = 1 SOL
+      lamports: amountNumber,
     });
 
     const signers = [
