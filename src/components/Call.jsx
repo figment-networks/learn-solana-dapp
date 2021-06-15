@@ -36,8 +36,8 @@ const GREETING_SIZE = borsh.serialize(
   new GreetingAccount(),
 ).length;
 
-const PAYER_SECRET_KEY = []; // UPDATE THIS;
-const PROGRAM_SECRET_KEY = []; // UPDATE THIS;
+const PAYER_SECRET_KEY = null;
+const PROGRAM_SECRET_KEY = null;
 
 const Program = () => {
   const [connection, setConnection] = useState(null);
@@ -58,6 +58,10 @@ const Program = () => {
   }
 
   const checkProgram = async () => {
+    if (!PAYER_SECRET_KEY || !PROGRAM_SECRET_KEY) {
+      alert("Set PAYER_SECRET_KEY and PROGRAM_SECRET_KEY first!")
+    }
+
     const programSecretKey = new Uint8Array(PROGRAM_SECRET_KEY);
     const programKeypair = Keypair.fromSecretKey(programSecretKey);
     const programId = programKeypair.publicKey;
