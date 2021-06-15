@@ -20,16 +20,24 @@ const Account = ({ keypair, setKeypair }) => {
         <Col>
           <Space direction="vertical">
             <Alert
-              message="Keypair generated!"
+              message={
+                <Space>
+                  <Text strong>Keypair generated!</Text>
+                </Space>
+              }
+              description={
+                <div>
+                  <Text>Open the JS console to inspect the Keypair.</Text>
+                  <div>
+                    This is the string representation of the public key
+                    <Text code>{publicKeyStr}</Text>.
+                  </div>
+                  <Text>It's accessible (and copyable) at the top right of this page.</Text>
+                </div>
+              }
               type="success"
               showIcon
             />
-            <Text strong>Public Key:</Text>
-            <Paragraph copyable={{ text: publicKeyStr }}>
-              <Text code>
-                {publicKeyStr}
-              </Text>
-            </Paragraph>
           </Space>
         </Col>
       }

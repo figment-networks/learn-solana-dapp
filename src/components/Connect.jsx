@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getNodeURL } from "../lib/utils";
+import { getNodeRpcURL } from "../lib/utils";
 import { Alert, Col, Space, Typography } from "antd";
 import { Connection } from "@solana/web3.js";
 
@@ -13,7 +13,7 @@ const Connect = () => {
   }, []);
 
   const getConnection = () => {
-    const url = getNodeURL();
+    const url = getNodeRpcURL();
     
     // Create a connection
     // Get the API version

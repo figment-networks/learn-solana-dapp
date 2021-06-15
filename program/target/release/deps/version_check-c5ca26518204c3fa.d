@@ -1,0 +1,10 @@
+/Users/guillaumegaluz/Coding/figment/repos/example-helloworld/src/program-rust/target/release/deps/version_check-c5ca26518204c3fa.rmeta: /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/lib.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/version.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/channel.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/date.rs
+
+/Users/guillaumegaluz/Coding/figment/repos/example-helloworld/src/program-rust/target/release/deps/libversion_check-c5ca26518204c3fa.rlib: /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/lib.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/version.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/channel.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/date.rs
+
+/Users/guillaumegaluz/Coding/figment/repos/example-helloworld/src/program-rust/target/release/deps/version_check-c5ca26518204c3fa.d: /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/lib.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/version.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/channel.rs /Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/date.rs
+
+/Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/lib.rs:
+/Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/version.rs:
+/Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/channel.rs:
+/Users/guillaumegaluz/.cargo/registry/src/github.com-1ecc6299db9ec823/version_check-0.9.3/src/date.rs:

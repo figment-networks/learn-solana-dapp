@@ -1,32 +1,37 @@
 export const STEPS = [
   {
     id: "connect",
-    title: "Connect to the Solana chain",
-    description: "Connect to Solana using its JS library",
-    url: "https://app.gitbook.com/@figment-learn/s/pathway-sandbox/solana-101-pathway/connect-to-devnet"
+    title: "Connect to the Solana devnet cluster",
+    url: "https://learn.figment.io/network-documentation/solana/tutorials/intro-pathway-solana-basics/1.-connect-to-solana-devnet-using-datahub"
   },
   {
     id: "account",
-    title: "Create an account",
-    description: "Create a Keypair (public + secret keys)",
-    url: "https://app.gitbook.com/@figment-learn/s/pathway-sandbox/solana-101-pathway/create-an-account"
+    title: "Create an Account/Keypair",
+    url: "https://learn.figment.io/network-documentation/solana/tutorials/intro-pathway-solana-basics/2.-create-your-first-solana-account"
   },
   {
     id: "fund",
-    title: "Fund the account",
-    description: "Request an airdrop of tokens on your address",
-    url: "https://app.gitbook.com/@figment-learn/s/pathway-sandbox/solana-101-pathway/fund-the-account"
+    title: "Fund the account with SOL",
+    url: "https://learn.figment.io/network-documentation/solana/tutorials/intro-pathway-solana-basics/3.-fund-the-account-with-sol"
   },
   {
     id: "balance",
-    title: "Check your balance",
-    description: "Check the token balance of any Solana address",
-    url: "https://app.gitbook.com/@figment-learn/s/pathway-sandbox/solana-101-pathway/check-the-balance"
+    title: "Check your account's balance",
+    url: "https://learn.figment.io/network-documentation/solana/tutorials/intro-pathway-solana-basics/4.-check-the-account-balance"
   },
   {
     id: "transfer",
-    title: "Transfer tokens",
-    description: "Transfer tokens by sending a signed transaction",
+    title: "Transfer SOL tokens between accounts",
+    url: "https://learn.figment.io/network-documentation/solana/tutorials/intro-pathway-solana-basics/5.-transfer-sol-tokens"
+  },
+  {
+    id: "deploy",
+    title: "Deploy a Program",
+    url: "https://app.gitbook.com/@figment-learn/s/pathway-sandbox/solana-101-pathway/transfer-sol-between-accounts"
+  },
+  {
+    id: "call",
+    title: "Call a Program",
     url: "https://app.gitbook.com/@figment-learn/s/pathway-sandbox/solana-101-pathway/transfer-sol-between-accounts"
   },
 ];

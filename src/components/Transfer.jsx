@@ -1,7 +1,17 @@
 import React, { useState } from "react"
-import { Connection, PublicKey, SystemProgram, Transaction, Keypair } from "@solana/web3.js";
+import { Connection, PublicKey, SystemProgram, Transaction, Keypair, sendAndConfirmTransaction } from "@solana/web3.js";
 import { Form, Input, Button, Alert, Space, Typography } from 'antd';
-import { getNodeURL, getTxExplorerURL } from '../lib/utils';
+import { LoadingOutlined, RedoOutlined } from '@ant-design/icons';
+
+import { getNodeRpcURL, getTxExplorerURL, getNodeWsURL } from '../lib/utils';
+
+const layout = {
+  labelCol: { span: 4 },
+  wrapperCol: { span: 20 },
+};
+const tailLayout = {
+  wrapperCol: { offset: 4, span: 20 },
+};
 
 const { Text } = Typography;
 
@@ -15,8 +25,6 @@ const Transfer = ({ keypair }) => {
     const keypair = Keypair.generate();
     const address = keypair.publicKey.toString();
     setToAddress(address);
-
-    console.log(`address`, address);
   }
 
   const transfer = (values) => {
@@ -26,90 +34,114 @@ const Transfer = ({ keypair }) => {
       setError("Amount needs to be a valid number")
     }
   
-    const url = getNodeURL();
-    const connection = new Connection(url);
-  
+    const url = getNodeRpcURL();
+    const connection = new Connection(url, { wsEndpoint: getNodeWsURL() });
+
     const fromPubKey = new PublicKey(values.from);
     const toPubKey = new PublicKey(toAddress);
-  
+
+    const instruction = SystemProgram.transfer({
+      fromPubkey: fromPubKey,
+      toPubkey: toPubKey,
+      lamports: 10000,  // 10^9 = 1 SOL
+    });
+
+    const transaction = new Transaction().add(instruction);
+
     const signers = [
       {
         publicKey: fromPubKey,
         secretKey: new Uint8Array(keypair.secretKey)
       }
     ];
-  
-    const instructions = SystemProgram.transfer({
-      fromPubkey: fromPubKey,
-      toPubkey: toPubKey,
-      lamports: amountNumber,
-    });
-    
-    // Create a transaction
-    // Add instructions
-    // Call sendTransaction
-    // On success, call setTxSignature and setFetching
+
+    setTxSignature(null);
+    setFetching(true);
+
+    sendAndConfirmTransaction(
+      connection,
+      transaction,
+      signers,
+    ).then((signature) => {
+      setTxSignature(signature)
+      setFetching(false);
+    })
+    .catch((err) => {
+      console.log(err);
+      setFetching(false);
+    })
   };
 
   const explorerUrl = getTxExplorerURL(txSignature);
 
   return (
     <Form
+      {...layout}
       name="transfer"
-      layout="vertical"
+      layout="horizontal"
       onFinish={transfer}
       initialValues={{
         from: keypair.publicKey.toString()
       }}
-      style={{ width: "400px" }}
     > 
       <Form.Item label="Sender" name="from" required>
-        <Input disabled />
+        <Text code>{keypair.publicKey.toString()}</Text>
       </Form.Item>
 
-      <Form.Item label="Amount" name="amount" required tooltip="Enter an amount of SOL tokens">
+      <Form.Item label="Amount" name="amount" required tooltip="1 lamport = 0.000000001 SOL">
         <Space direction="vertical">
           <Input suffix="lamports" style={{ width: "200px" }} />
-          <Text type="secondary">(1 lamport = 0.000000001 SOL)</Text>
         </Space>
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item label="Recipient" required>
         <Space direction="horizontal">
           {toAddress && <Text code>{toAddress}</Text>}
-          <Button onClick={generate}>Generate an address</Button>
+          <Button size="small" type="dashed" onClick={generate} icon={<RedoOutlined />}>Generate an address</Button>
         </Space>
       </Form.Item>
 
-      <Form.Item>
+      <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit" disabled={fetching}>
-          Submit
+          Submit Transfer
         </Button>
       </Form.Item>
 
-      {fetching && "Sending transaction..."}
+      {
+        fetching &&
+          <Form.Item {...tailLayout}>
+            <Space size="large">
+              <LoadingOutlined style={{ fontSize: 24, color: "#1890ff" }} spin />
+              <Text italic type="secondary">Transfer initiated. Waiting for confirmations...</Text>
+            </Space>
+          </Form.Item>
+      }
 
       {txSignature &&
-        <Alert
-          type="success"
-          showIcon
-          message={
-            <Space>
-              <Text strong>Transfer succeeded!</Text>
-              <a href={explorerUrl} target="_blank" rel="noreferrer" style={{ fontSize: "12px" }}>(view on Solana Explorer)</a>
-            </Space>
-          }
-        />
+        <Form.Item {...tailLayout}>
+          <Alert
+            type="success"
+            showIcon
+            message={
+              <Text strong>Transfer confirmed!</Text>
+            }
+            description={
+              <a href={explorerUrl} target="_blank" rel="noreferrer">View on Solana Explorer</a>
+            }
+          />
+        </Form.Item>
       }
       
       {error &&
-        <Alert
-          type="error"
-          showIcon
-          closable
-          message={error}
-          onClose={() => setError(null)}
-        />
+        <Form.Item {...tailLayout}>
+          <Alert
+            type="error"
+            showIcon
+            closable
+            message={error}
+            onClose={() => setError(null)}
+          />
+        </Form.Item>
       }
     </Form>
   );
