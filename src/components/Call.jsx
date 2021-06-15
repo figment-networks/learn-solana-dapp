@@ -111,34 +111,13 @@ const Program = () => {
     // Load the payer's Keypair from the Uint8Array PAYER_SECRET_KEY
     // by using Keypair.fromsecretkey
     // https://solana-labs.github.io/solana-web3.js/classes/keypair.html#fromsecretkey
-    const payerSecretKey = new Uint8Array(PAYER_SECRET_KEY);
-    const payerKeypair = Keypair.fromSecretKey(payerSecretKey);
-
+  
     // Create the TransactionInstruction by passing keys, programId and data
     // For data you can pass Buffer.alloc(0) as all the program's instructions are the same
-    const instruction = new TransactionInstruction({
-      keys: [{pubkey: greeterPublicKey, isSigner: false, isWritable: true}],
-      programId,
-      data: Buffer.alloc(0), // All instructions are hellos
-    });
-
+  
     // Call sendAndConfirmTransaction
     // https://solana-labs.github.io/solana-web3.js/modules.html#sendandconfirmtransaction
     // On success, call getGreetings() to fetch the greetings counter
-    setGreetFetching(true);
-    sendAndConfirmTransaction(
-      connection,
-      new Transaction().add(instruction),
-      [payerKeypair],
-    ).then(res => {
-      console.log(`SUCCESS`, res);
-      setGreetTxSignature(res);
-      setGreetFetching(false);
-      getGreetings();
-    }).catch(err => {
-      console.log(`ERROR`, err);
-      setGreetFetching(false);
-    });
   }
 
   const getGreetings = async () => {
