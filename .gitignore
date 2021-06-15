@@ -1,3 +1,10 @@
 .env.local
-node_modules
+/node_modules
 yarn-error.log
+
+*.sw[po]
+/.cargo
+/dist
+.env
+src/client/util/store
+test-ledger/
