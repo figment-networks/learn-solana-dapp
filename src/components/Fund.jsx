@@ -22,7 +22,7 @@ const Fund = () => {
     <Col>
       <Space direction="vertical" size="large">
         <Space direction="vertical">
-          <Text>Paste the address you generated previously:</Text>
+          <Text>Paste the address you generated (you can copy it in the top right corner of the page):</Text>
           <Input placeholder="Enter an address" onChange={(e) => setValue(e.target.value) } style={{ width: "500px" }} />
           <Button type="primary" onClick={fund}>Fund this address</Button>
         </Space>
