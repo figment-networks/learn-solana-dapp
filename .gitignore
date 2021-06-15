@@ -8,3 +8,5 @@ yarn-error.log
 .env
 src/client/util/store
 test-ledger/
+
+dist
