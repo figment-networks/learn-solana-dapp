@@ -10,7 +10,7 @@ const Sidebar = ({ stepIndex }) => {
   return (
     <Left span={8}>
       <div style={{ marginBottom: "0px", fontSize: "16px", fontWeight: "600", color: "grey" }}>Figment Learn</div>
-      <div style={{ marginBottom: "40px", fontSize: "28px", fontWeight: "700" }}>Solana 101 Pathway</div>
+      <div style={{ marginBottom: "40px", fontSize: "28px", fontWeight: "700" }}>Solana Pathway</div>
 
       <Steps direction="vertical" size="small" current={stepIndex}>
         {STEPS.map(s => <Step key={s.id} title={s.title} />)}
