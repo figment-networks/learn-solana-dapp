@@ -42,7 +42,7 @@ const PAYER_SECRET_KEY = [148,7,74,174,185,150,202,29,161,11,99,213,101,42,96,16
 const Program = () => {
   const [connection, setConnection] = useState(null);
   const [programId, setProgramId] = useState(null);
-  const [greeterPublicKey, setGreeterPublicKey] = useState(null);
+  const [greetedPublicKey, setGreetedPublicKey] = useState(null);
   const [greetingsCounter, setGreetingsCounter] = useState(null);
   const [sayHelloFetching, setSayHelloFetching] = useState(false);
   const [sayHelloTxSignature, setSayHelloTxSignature] = useState(null);
@@ -62,14 +62,14 @@ const Program = () => {
     const programKeypair = Keypair.fromSecretKey(programSecretKey);
     const programId = programKeypair.publicKey;
     setProgramId(programId);
-  
+
     // // Check if the program has been deployed
     // await connection.getAccountInfo(programId);
     // console.log(`Using program ${programId.toBase58()}`);
 
     const payerSecretKey = new Uint8Array(PAYER_SECRET_KEY);
     const payerKeypair = Keypair.fromSecretKey(payerSecretKey);
-  
+
     // Derive the address of a greeting account from the program so that it's easy to find later.
     const GREETING_SEED = 'hello';
     const greetedPubkey = await PublicKey.createWithSeed(
@@ -77,14 +77,14 @@ const Program = () => {
       GREETING_SEED,
       programId,
     );
-    setGreeterPublicKey(greetedPubkey)
-  
+    setGreetedPublicKey(greetedPubkey)
+
     // Check if the greeting account has already been created
     const greetedAccount = await connection.getAccountInfo(greetedPubkey);
     if (greetedAccount === null) {
       console.log('Creating account', greetedPubkey.toBase58(), 'to say hello to');
       const lamports = await connection.getMinimumBalanceForRentExemption(GREETING_SIZE);
-  
+
       const transaction = new Transaction().add(
         SystemProgram.createAccountWithSeed({
           fromPubkey: payerKeypair.publicKey,
@@ -108,7 +108,7 @@ const Program = () => {
     const payerKeypair = Keypair.fromSecretKey(payerSecretKey);
 
     const instruction = new TransactionInstruction({
-      keys: [{pubkey: greeterPublicKey, isSigner: false, isWritable: true}],
+      keys: [{pubkey: greetedPublicKey, isSigner: false, isWritable: true}],
       programId,
       data: Buffer.alloc(0), // All instructions are hellos
     });
@@ -130,7 +130,7 @@ const Program = () => {
   }
 
   const getGreetings = async () => {
-    const accountInfo = await connection.getAccountInfo(greeterPublicKey);
+    const accountInfo = await connection.getAccountInfo(greetedPublicKey);
 
     if (accountInfo === null) throw 'Error: cannot find the greeted account';
 
@@ -139,18 +139,18 @@ const Program = () => {
       GreetingAccount,
       accountInfo.data,
     );
-    
+
     setGreetingsCounter(greeting.counter);
   }
 
-  if (!greeterPublicKey) {
+  if (!greetedPublicKey) {
     return (
       <Space>
         <Button type="primary" onClick={checkProgram}>Check Program Info</Button>
       </Space>
     )
   }
-  
+
   return (
     <Col>
       <Space direction="vertical" size="large">
