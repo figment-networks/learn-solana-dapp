@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Row, Col, Typography, Space } from 'antd';
+import { Alert, Button, Row, Col, Typography, Space } from 'antd';
 import styled from "styled-components";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { ArrowUpRight } from 'react-feather';
@@ -25,10 +25,18 @@ const Step = ({ stepIndex, prev, next }) => {
       <Col>
         <StepHeader>
           <Title>{step.title}</Title>
-          <Space align="center">
-            <Link><a href={step.url} target="_blank" rel="noreferrer">View step Instructions</a></Link>
-            <ArrowUpRight color="#1890ff" size="20" style={{ marginTop: "6px" }} />
-          </Space>
+          <Alert
+            message={
+              <Space>
+                <Text strong>Start here!</Text>
+                <Space align="center" size="small">
+                  <Link><a href={step.url} target="_blank" rel="noreferrer">View step Instructions</a></Link>
+                  <ArrowUpRight color="#1890ff" size={18} style={{ marginTop: "6px" }} />
+                </Space>
+              </Space>
+            }
+            type="info"
+          />
         </StepHeader>
 
         <StepContent>
@@ -100,10 +108,10 @@ const StepFooter = styled(Row)`
 const Title = styled.div`
   font-size: 30px;
   font-weight: 600;
+  margin-bottom: 10px;
 `;
 
 const Link = styled.div`
-  font-size: 16px;
   font-weight: 400;
 
   &:hover {
