@@ -8,7 +8,7 @@ export const getNodeRpcURL = () => {
 // Datahub Node's WS (Web Socket) URL
 export const getNodeWsURL = () => {
   return process.env.REACT_APP_USE_DATAHUB === "true"
-    ? `ws://${process.env.REACT_APP_DATAHUB_DEVNET_WS_URL}/apikey/${process.env.REACT_APP_DATAHUB_API_KEY}`
+    ? `wss://${process.env.REACT_APP_DATAHUB_DEVNET_WS_URL}/apikey/${process.env.REACT_APP_DATAHUB_API_KEY}`
     : process.env.REACT_APP_DEVNET_URL;
 }
 
