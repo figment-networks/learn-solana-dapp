@@ -155,7 +155,7 @@ const Program = () => {
           greetFetching &&
             <Space size="large">
               <LoadingOutlined style={{ fontSize: 24, color: "#1890ff" }} spin />
-              <Text italic type="secondary">Transaction initiated. Waiting for confirmations...</Text>
+              <Text italic={true} type="secondary">Transaction initiated. Waiting for confirmations...</Text>
             </Space>
         }
         {
