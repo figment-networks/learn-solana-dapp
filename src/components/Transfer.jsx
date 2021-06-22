@@ -28,6 +28,8 @@ const Transfer = ({ keypair }) => {
   }
 
   const transfer = (values) => {
+    alert("Implement the transfer() function!");
+
     const amountNumber = parseFloat(values.amount);
   
     if (isNaN(amountNumber)) {

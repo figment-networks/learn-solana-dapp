@@ -12,6 +12,8 @@ const Balance = () => {
   const [balance, setBalance] = useState(null);
 
   const getBalance = () => {
+    alert("Implement the getBalance() function!");
+
     const url = getNodeRpcURL();
     const connection = new Connection(url);
     

@@ -6,6 +6,8 @@ const { Text, Paragraph } = Typography;
 
 const Account = ({ keypair, setKeypair }) => {
   const generateKeypair = () => {
+    alert("Implement the generateKeypair() function!");
+    
     // Generate a Keypair
     // Save it to <App />'s state
   }

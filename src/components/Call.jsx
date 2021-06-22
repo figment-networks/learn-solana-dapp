@@ -108,6 +108,8 @@ const Program = () => {
   }
 
   const greet = async () => {
+    alert("Implement the greet() function!");
+
     // Load the payer's Keypair from the Uint8Array PAYER_SECRET_KEY
     // by using Keypair.fromsecretkey
     // https://solana-labs.github.io/solana-web3.js/classes/keypair.html#fromsecretkey

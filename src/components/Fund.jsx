@@ -9,6 +9,8 @@ const Fund = () => {
   const [value, setValue] = useState("");
 
   const fund = () => {
+    alert("Implement the fund() function!");
+
     const url = process.env.REACT_APP_DEVNET_URL;
     const connection = new Connection(url);
     
