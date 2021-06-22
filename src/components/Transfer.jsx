@@ -54,7 +54,6 @@ const Transfer = ({ keypair }) => {
     ];
 
     setTxSignature(null);
-    setFetching(true);
 
     // Create a transaction
     // Add instructions
