@@ -26,7 +26,7 @@ export default function useKeyFromLocalStore() {
       // Save state
       setStoredValue(valueToStore);
       // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(Array.from(valueToStore._keypair.secretKey)));
+      window.localStorage.setItem("solana_secret_key", JSON.stringify(Array.from(valueToStore._keypair.secretKey)));
     } catch (error) {
       console.log(error);
     }
