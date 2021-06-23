@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, Button, Row, Col, Typography, Space } from 'antd';
 import styled from "styled-components";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
@@ -12,11 +12,12 @@ import Transfer from "./Transfer";
 import Connect from "./Connect";
 import Deploy from "./Deploy";
 import Call from "./Call";
+import useKeyFromLocalStore from "../hooks/useKeyFromLocalStore"
 
 const { Text, Paragraph } = Typography;
 
 const Step = ({ stepIndex, prev, next }) => {
-  const [keypair, setKeypair] = useState(null);
+  const [keypair, setKeypair] = useKeyFromLocalStore();
   
   const step = STEPS[stepIndex];
 
