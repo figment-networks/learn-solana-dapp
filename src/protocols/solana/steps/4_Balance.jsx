@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, Col, Input, Button, Space, Typography } from 'antd';
-import { getAccountExplorerURL, getNodeRpcURL } from "../lib/utils";
+import { getAccountExplorerURL, getNodeRpcURL } from "../utils";
 import { Connection, PublicKey } from "@solana/web3.js";
 
 const { Text } = Typography;

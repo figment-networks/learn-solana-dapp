@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Alert, Button, Space, Col, Input, Typography } from 'antd';
 import { Connection, PublicKey } from "@solana/web3.js";
 

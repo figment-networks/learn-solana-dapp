@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, Button, Row, Col, Typography, Space } from 'antd';
-import styled from "styled-components";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 import { ArrowUpRight } from 'react-feather';
 
-import { STEPS } from "../lib/steps-config";
-import Balance from "./Balance";
-import Account from "./Account";
-import Fund from "./Fund";
-import Transfer from "./Transfer";
-import Connect from "./Connect";
-import Deploy from "./Deploy";
-import Call from "./Call";
+import { StepType } from 'shared/types';
 
-const { Text, Paragraph } = Typography;
+const { Text } = Typography;
 
-const Step = ({ stepIndex, prev, next }) => {
-  const [keypair, setKeypair] = useState(null);
-  
-  const step = STEPS[stepIndex];
-
+const Step = ({
+  step,
+  isFirstStep,
+  isLastStep,
+  prev,
+  next,
+  body,
+  nav,
+}: {
+  step: StepType
+  isFirstStep: boolean
+  isLastStep: boolean
+  prev(): void
+  next(): void
+  body: JSX.Element
+  nav: JSX.Element
+}) => {
   return (
-    <Right span={16} key={stepIndex}>
+    <Right span={16}>
       <Col>
         <StepHeader>
           <Title>{step.title}</Title>
@@ -40,54 +45,43 @@ const Step = ({ stepIndex, prev, next }) => {
         </StepHeader>
 
         <StepContent>
-          {step.id === "connect" && <Connect />}
-          {step.id === "account" && <Account keypair={keypair} setKeypair={setKeypair} />}
-          {step.id === "fund" && <Fund />}
-          {step.id === "balance" && <Balance />}
-          {step.id === "transfer" && <Transfer keypair={keypair} />}
-          {step.id === "deploy" && <Deploy />}
-          {step.id === "call" && <Call />}
+          {body}
         </StepContent>
 
-        <StepsNav stepIndex={stepIndex} next={next} prev={prev} />
+        <StepsNav next={next} prev={prev} isFirstStep={isFirstStep} isLastStep={isLastStep} />
 
-        <Nav keypair={keypair} />
+        {nav}
       </Col>
     </Right>
   )
 }
 
-const Nav = ({ keypair }) => {
-  if (!keypair) return null;
-
-  const publicKey = keypair.publicKey.toString();
-  const publicKeyToDisplay = `${publicKey.slice(0,5)}...${publicKey.slice(-5)}`;
-
-  return (
-    <div style={{ position: "fixed", top: 20, right: 20 }}>
-      <Paragraph copyable={{ text: keypair.publicKey.toString() }}>
-        <Text code>{publicKeyToDisplay}</Text>
-      </Paragraph>
-    </div>
-  )
-}
-
-const StepsNav = ({ stepIndex, next, prev }) => {
+const StepsNav = ({
+  next,
+  prev,
+  isFirstStep,
+  isLastStep,
+}: {
+  next(): void
+  prev(): void
+  isFirstStep: boolean
+  isLastStep: boolean
+}) => {
   return (
     <StepFooter>
-      {stepIndex > 0 && (
+      {!isFirstStep &&
         <PrevButton style={{ marginRight: '8px' }} onClick={() => prev()} icon={<ArrowLeftOutlined />}>
           Previous Step
         </PrevButton>
-      )}
-      {stepIndex < STEPS.length - 1 && (
+      }
+      {!isLastStep &&
         <NextButton type="primary" onClick={() => next()}>
           <Row align="middle">
             Next Step
             <ArrowRightOutlined size={20} style={{ marginLeft: "6px" }} />
           </Row>
         </NextButton>
-      )}
+      }
     </StepFooter>
   )
 }

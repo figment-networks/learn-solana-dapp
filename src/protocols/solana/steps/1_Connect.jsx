@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getNodeRpcURL } from "../lib/utils";
+import { useEffect, useState } from 'react';
+import { getNodeRpcURL } from "../utils";
 import { Alert, Col, Space, Typography } from "antd";
 import { Connection } from "@solana/web3.js";
 
@@ -14,10 +14,17 @@ const Connect = () => {
 
   const getConnection = () => {
     const url = getNodeRpcURL();
-    
+  
     // Create a connection
+    const connection = new Connection(url);
+  
     // Get the API version
-    // and save it to the component's state
+    connection.getVersion()
+      .then(version => {
+        // and save it to the component's state  
+        setVersion(version);
+      })
+      .catch(error => console.log(error))
   }
 
   return (

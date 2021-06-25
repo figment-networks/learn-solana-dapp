@@ -10,3 +10,5 @@ src/client/util/store
 test-ledger/
 
 dist
+
+program/target/

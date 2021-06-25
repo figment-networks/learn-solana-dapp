@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { Connection, PublicKey, SystemProgram, Transaction, Keypair, sendAndConfirmTransaction } from "@solana/web3.js";
 import { Form, Input, Button, Alert, Space, Typography } from 'antd';
 import { LoadingOutlined, RedoOutlined } from '@ant-design/icons';
 
-import { getNodeRpcURL, getTxExplorerURL, getNodeWsURL } from '../lib/utils';
+import { getNodeRpcURL, getTxExplorerURL, getNodeWsURL } from '../utils';
 
 const layout = {
   labelCol: { span: 4 },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as borsh from 'borsh';
 import { Alert, Button, Space, Col, Typography } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -11,7 +11,7 @@ import {
   Transaction,
   SystemProgram} from "@solana/web3.js";
 
-import { getNodeRpcURL, getAccountExplorerURL, getNodeWsURL, getTxExplorerURL } from "../lib/utils";
+import { getNodeRpcURL, getAccountExplorerURL, getNodeWsURL, getTxExplorerURL } from "../utils";
 
 const { Text } = Typography;
 
@@ -36,8 +36,8 @@ const GREETING_SIZE = borsh.serialize(
   new GreetingAccount(),
 ).length;
 
-const PAYER_SECRET_KEY = null;
-const PROGRAM_SECRET_KEY = null;
+const PAYER_SECRET_KEY = [200,120,107,7,200,136,174,237,23,28,105,124,253,97,12,122,209,212,245,192,174,185,249,118,111,113,165,49,130,107,227,48,79,3,244,85,252,195,170,158,199,17,209,193,197,235,83,167,118,155,162,2,133,233,71,170,208,64,202,140,162,105,67,239];
+const PROGRAM_SECRET_KEY = [198,20,157,57,145,69,187,143,44,42,162,68,79,99,242,254,36,250,168,106,44,154,233,90,172,234,196,99,64,69,84,47,27,99,122,149,188,239,56,122,107,127,162,130,7,89,136,156,186,109,9,127,191,205,187,187,166,184,54,187,255,102,165,120];
 
 const Program = () => {
   const [connection, setConnection] = useState(null);

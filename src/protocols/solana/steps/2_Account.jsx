@@ -1,4 +1,3 @@
-import React from 'react';
 import { Alert, Button, Col, Space, Typography } from 'antd';
 import { Keypair } from "@solana/web3.js";
 
