@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Col } from 'antd';
+import { Col } from 'antd';
 import styled from "styled-components";
 import { PROTOCOLS } from "./constants";
 
@@ -21,7 +21,7 @@ const Home = () => {
               </ProtocolBox>
             );
 
-            return active ? <Link to={`/${id}`}>{box}</Link> : box;
+            return active ? <Link key={id} to={`/${id}`}>{box}</Link> : box;
           })
         }
       </ProtocolRow>

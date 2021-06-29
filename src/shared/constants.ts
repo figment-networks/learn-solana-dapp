@@ -3,8 +3,35 @@ import { ProtocolsType } from "./types";
 export const PROTOCOLS: ProtocolsType = {
   AVALANCHE: {
     id: "avalanche",
-    active: false,
-    logoUrl: "https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=010"
+    active: true,
+    logoUrl: "https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=010",
+    steps: [
+      {
+        id: "connect",
+        title: "Connect to the Avalanche network",
+        url: "https://learn.figment.io/network-documentation/avalanche/tutorials/pathway/1.-connect-to-avalanche-node-with-datahub"
+      },
+      {
+        id: "account",
+        title: "Create an Account/Keypair",
+        url: "https://learn.figment.io/network-documentation/avalanche/tutorials/pathway/2.-create-your-first-avalanche-account"
+      },
+      {
+        id: "fund",
+        title: "Fund the account with AVAX",
+        url: "https://learn.figment.io/network-documentation/avalanche/tutorials/pathway/3.-query-the-avalanche-network"
+      },
+      {
+        id: "balance",
+        title: "Check your account balance",
+        url: "https://learn.figment.io/network-documentation/avalanche/tutorials/pathway/4.-create-your-first-transaction"
+      },
+      {
+        id: "transfer",
+        title: "Transfer AVAX tokens between accounts",
+        url: "https://learn.figment.io/network-documentation/avalanche/tutorials/pathway/5.-cross-chain-token-transfers"
+      },
+    ]
   },
   CELO: {
     id: "celo",

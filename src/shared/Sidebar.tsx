@@ -54,4 +54,11 @@ const Footer = styled.div`
   }
 `;
 
+const Title = styled.div`
+margin-bottom: 0px,
+font-size: 16px,
+font-weight: 600,
+color: grey, 
+`;
+
 export default Sidebar
